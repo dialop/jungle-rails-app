@@ -1,0 +1,21 @@
+<h1>Categories</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @categories.each do |category| %>
+      <tr>
+        <td><%= category.name %></td>
+        <td>
+          <%= link_to 'Show', admin_category_path(category) %>
+          <!-- You can add more actions here if needed -->
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

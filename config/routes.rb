@@ -14,7 +14,6 @@ Rails.application.routes.draw do
 
   resources :products, only: [:index, :show]
 
-  # Add this line here
   resources :categories, only: [:show]
 
   resource :cart, only: [:show] do
@@ -28,7 +27,7 @@ Rails.application.routes.draw do
     root to: 'dashboard#show'
     resources :products, except: [:edit, :update, :show]
     
-    # Add resources for categories with only the required actions
+    # Add resources for categories
     resources :categories, only: [:index, :new, :create]
   end
 end
