@@ -1,8 +1,14 @@
-<h1><%= @category.name %></h1>
+<section class="categories-show">
 
-<h2>Products in this Category:</h2>
-<ul>
-  <% @products.each do |product| %>
-    <li><%= product.name %> - Created at: <%= product.created_at.to_s(:long) %></li>
-  <% end %>
-</ul>
+  <header class="page-header">
+    <h1>
+      <%= @category.name %>
+      <small>(<%= pluralize @products.size, 'product' %>)</small>
+    </h1>
+  </header>
+
+  <div class="products">
+    <%= render @products %>
+  </div>
+
+</section>
