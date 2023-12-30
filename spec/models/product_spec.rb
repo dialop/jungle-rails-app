@@ -17,6 +17,7 @@ RSpec.describe Product, type: :model do
       )
       expect(product).to be_valid
     end
+    
 
     # Ensure a product is invalid without a name
     it 'requires a name to be valid' do
