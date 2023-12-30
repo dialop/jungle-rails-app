@@ -28,6 +28,7 @@ RSpec.describe User, type: :model do
       user.valid?
       expect(user.errors.full_messages).to include("Password confirmation doesn't match Password.")
     end
+    
 
     # Ensures that the user is invalid if any required fields are missing
     it 'is not valid without required fields' do
