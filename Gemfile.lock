@@ -94,6 +94,13 @@ GEM
     childprocess (4.1.0)
     concurrent-ruby (1.1.10)
     crass (1.0.6)
+    cypress-rails (0.6.1)
+      puma (>= 3.8.0)
+      railties (>= 5.2.0)
+    database_cleaner-active_record (2.1.0)
+      activerecord (>= 5.a)
+      database_cleaner-core (~> 2.0.0)
+    database_cleaner-core (2.0.1)
     diff-lcs (1.5.0)
     dotenv (2.7.6)
     dotenv-rails (2.7.6)
@@ -144,6 +151,10 @@ GEM
       money (~> 6.13)
       railties (>= 3.0)
     msgpack (1.5.1)
+    net-protocol (0.2.2)
+      timeout
+    net-smtp (0.4.0)
+      net-protocol
     nio4r (2.5.8)
     nokogiri (1.13.4-x86_64-linux)
       racc (~> 1.4)
@@ -247,6 +258,7 @@ GEM
     stripe (5.53.0)
     thor (1.2.1)
     tilt (2.0.10)
+    timeout (0.4.1)
     turbolinks (5.2.1)
       turbolinks-source (~> 5.2)
     turbolinks-source (5.2.0)
@@ -283,6 +295,8 @@ DEPENDENCIES
   byebug
   capybara (>= 3.26)
   carrierwave
+  cypress-rails
+  database_cleaner-active_record
   dotenv-rails
   faker
   font-awesome-rails
@@ -290,12 +304,13 @@ DEPENDENCIES
   jquery-rails
   listen (~> 3.3)
   money-rails
+  net-smtp
   pg
   puma (~> 5.0)
   rack-mini-profiler (~> 2.0)
   rails (= 6.1.5.1)
   rmagick
-  rspec-rails
+  rspec-rails (~> 5.1)
   sass-rails (>= 6)
   sdoc
   selenium-webdriver
