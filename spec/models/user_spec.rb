@@ -26,7 +26,7 @@ RSpec.describe User, type: :model do
         last_name: 'Doe'
       )
       user.valid?
-      expect(user.errors.full_messages).to include("Password confirmation doesn't match Password.")
+      expect(user.errors.full_messages).to include("Password confirmation doesn't match Password")
     end
     
 
@@ -34,7 +34,7 @@ RSpec.describe User, type: :model do
     it 'is not valid without required fields' do
       user = User.new
       user.valid?
-      expect(user.errors.full_messages).to include("Email can't be blank.", "Password can't be blank.", "First name can't be blank.", "Last name can't be blank.")
+      expect(user.errors.full_messages).to include("Email can't be blank", "Password can't be blank", "First name can't be blank", "Last name can't be blank")
     end
 
     # Tests if the email uniqueness validator works correctly, disregarding case sensitivity
@@ -55,7 +55,7 @@ RSpec.describe User, type: :model do
         last_name: 'Doe'
       )
       user.valid?
-      expect(user.errors.full_messages).to include("Email has already been taken.")
+      expect(user.errors.full_messages).to include("Email has already been taken")
     end
 
     # Validates that the password must meet a specified minimum length
@@ -68,7 +68,7 @@ RSpec.describe User, type: :model do
         last_name: 'Doe'
       )
       user.valid?
-      expect(user.errors.full_messages).to include("Password is too short. Minimum is 12 characters.")
+      expect(user.errors.full_messages).to include("Password is too short. Minimum is 12 characters")
     end
   end
 
@@ -131,20 +131,19 @@ RSpec.describe User, type: :model do
       expect(authenticated_user).to eq(user)
     end
 
-   # Tests that the email authentication is case-insensitive
-it 'ignores case in email' do
-  user = User.create(
-    email: 'test@example.com',
-    password: 'password',
-    password_confirmation: 'password',
-    first_name: 'John',
-    last_name: 'Doe'
-  )
+    # Tests that the email authentication is case-insensitive
+    it 'ignores case in email' do
+      user = User.create(
+        email: 'test@example.com',
+        password: 'password',
+        password_confirmation: 'password',
+        first_name: 'John',
+        last_name: 'Doe'
+      )
 
-  authenticated_user = User.authenticate_with_credentials('TEST@example.com', 'password')
-  expect(authenticated_user).to eq(user)
+      authenticated_user = User.authenticate_with_credentials('TEST@example.com', 'password')
+      expect(authenticated_user).to eq(user)
+    end
+
+  end
 end
-
-end 
-
-end 
