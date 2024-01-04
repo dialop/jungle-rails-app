@@ -13,6 +13,10 @@
   "version": "0.1.0",
   "devDependencies": {
     "cypress": "^9.7.0",
+<<<<<<< HEAD
+=======
+    "install": "^0.13.0",
+>>>>>>> 5fbb9386cb413b83550987f5cf178350b59cdfb5
     "webpack-dev-server": "^3.11.2"
   }
 }
