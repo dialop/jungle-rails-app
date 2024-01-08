@@ -6,6 +6,9 @@ class CreateUsers < ActiveRecord::Migration[6.1]
       t.string :email
       t.string :password_digest
 
+      # Add an admin field, default to false
+      t.boolean :admin, default: false
+
       t.timestamps
     end
   end
