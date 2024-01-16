@@ -1,13 +1,13 @@
 class SessionsController < ApplicationController
-  
-  #skip_before_action :require_user, only: [:new, :create]
-  
+  # ...
+
   def new
+    # Render the login form
   end
 
- def create
+  def create
     user = User.authenticate_with_credentials(params[:session][:email], params[:session][:password])
-    
+
     if user
       session[:user_id] = user.id
       # Check if the user is an admin and redirect accordingly
@@ -22,4 +22,8 @@ class SessionsController < ApplicationController
     end
   end
 
+  def destroy
+    session[:user_id] = nil
+    redirect_to root_path, notice: 'Logged out successfully'
+  end
 end

@@ -1,15 +1,12 @@
-require 'bcrypt'
-
 class User < ApplicationRecord
   has_secure_password
   validates :first_name, presence: true
   validates :last_name, presence: true
-  validates :email, presence: true, uniqueness: true
+  validates :email, presence: true, uniqueness: { case_sensitive: false }
   validates :password_digest, presence: true
 
-  # Add an admin? method to check if the user is an admin
   def admin?
-    self.admin
+    self[:admin]
   end
 
   def authenticate(password)

@@ -1,9 +1,9 @@
 class ApplicationController < ActionController::Base
-  # If you have any filters or protections, you can uncomment or add them here
+  # Uncomment the following line to require user authentication for all actions except :new and :create
   # before_action :require_user, except: [:new, :create]
   # protect_from_forgery with: :exception
 
-  helper_method :current_user, :logged_in?, :cart, :enhanced_cart, :cart_subtotal_cents
+  helper_method :current_user, :logged_in?, :cart, :enhanced_cart, :cart_subtotal_cents, :admin_user?
 
   private
 
@@ -17,17 +17,22 @@ class ApplicationController < ActionController::Base
     !!current_user
   end
 
+  # Method to check if the user is an admin
+  def admin_user?
+    current_user&.admin?
+  end
+
   # Methods for handling the cart
   def cart
     @cart ||= cookies[:cart].present? ? JSON.parse(cookies[:cart]) : {}
   end
 
   def enhanced_cart
-    @enhanced_cart ||= Product.where(id: cart.keys).map {|product| { product: product, quantity: cart[product.id.to_s] } }
+    @enhanced_cart ||= Product.where(id: cart.keys).map { |product| { product: product, quantity: cart[product.id.to_s] } }
   end
 
   def cart_subtotal_cents
-    enhanced_cart.map {|entry| entry[:product].price_cents * entry[:quantity]}.sum
+    enhanced_cart.map { |entry| entry[:product].price_cents * entry[:quantity] }.sum
   end
 
   def update_cart(new_cart)
@@ -37,4 +42,12 @@ class ApplicationController < ActionController::Base
     }
     cookies[:cart]
   end
+
+  # Uncomment the following method to require user authentication
+  # def require_user
+  #   unless logged_in?
+  #     flash[:alert] = 'You must be logged in to access this page.'
+  #     redirect_to login_path
+  #   end
+  # end
 end
